@@ -1,5 +1,7 @@
 from app import app
 from flask import render_template, request, redirect, url_for, flash
+from app.forms import ContactForm
+from flask_mail import Message
 
 
 ###
@@ -16,6 +18,22 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
+
+#Routing for contact forms
+app.secret_key = "Som3$ec5etK*y"
+@app.route('/contact/', methods = ['GET', 'POST'])
+def contact():
+    form = ContactForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        email = form.email.data
+        subject = form.subject.data
+        message = form.message.data
+        msg = Message(f"{subject}", sender = (name, email), recipients = ['{email}'])
+        mail.send(msg)
+        flash(f"Your email has been sent!")
+        return redirect('/')
+    return render_template('contact.html', form = form)
 
 
 ###
