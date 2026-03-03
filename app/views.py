@@ -29,8 +29,8 @@ def contact():
         email = form.email.data
         subject = form.subject.data
         message = form.message.data
-        msg = Message(f"{subject}", sender = (name, email), recipients = ['{email}'])
-        mail.send(msg)
+        msg = Message(f"{subject}", sender = "britnieanngrayy@gmail.com", recipients = ["azooloe@gmail.com"], body = f"From: {name} - {email} \n {message}")
+        app.__init__.mail.send(msg)
         flash(f"Your email has been sent!")
         return redirect('/')
     return render_template('contact.html', form = form)
