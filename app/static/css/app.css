@@ -35,15 +35,16 @@ input, textarea{
     margin-top: 5px;
 }
 
-button{
-    background-color: #007bff;
-    color: white;
-    padding: 8px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.flashes{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    z-index: 1000;
 }
 
-button:hover{
-    background-color: #0056b3;
+.flash{
+    font-weight: bold;
+    color:#555;
+    padding: 12px 20px;
 }
